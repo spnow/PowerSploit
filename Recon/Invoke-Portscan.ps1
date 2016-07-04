@@ -1,4 +1,4 @@
-﻿function Invoke-Portscan
+function Invoke-Portscan
 {
 <#
 .SYNOPSIS
@@ -14,10 +14,6 @@ Optional Dependencies: None
 .DESCRIPTION
 
 Does a simple port scan using regular sockets, based (pretty) loosely on nmap
-
-.NOTES
-
-version .13
 
 .PARAMETER Hosts
 
@@ -647,14 +643,14 @@ http://webstersprodigy.net
 
             [Environment]::CurrentDirectory=(Get-Location -PSProvider FileSystem).ProviderPath
 
-            if ($Hosts)
+            if ($PsCmdlet.ParameterSetName -eq "cmdHosts")
             {
                 foreach($h in $Hosts)
                 {
                     Parse-Hosts($h) | Out-Null
                 }
             }
-            elseif ($HostFile)
+            else
             {
                 Parse-ILHosts($HostFile) | Out-Null
             }
